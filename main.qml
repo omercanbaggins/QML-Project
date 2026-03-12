@@ -9,10 +9,10 @@ ApplicationWindow {
     title: "PySide6 QML Birles"
     width:1920
     height:1080
+    
 
     RowLayout{
         anchors.centerIn:parent
-        Layout.margins: 55555
         Deneme3{        
 }
 
@@ -31,14 +31,24 @@ ApplicationWindow {
            //sureyı ekliyor
     }
     ColumnLayout{
-        spacing: 20
+        spacing: 35
 
-    RowLayout{
-        spacing: 20
+        
+
+    RowLayout{Rectangle {
+        
+    anchors.fill: parent
+    color: "#141d29"
+    border.width:2
+    radius:14
+    
+      // dark grayish-blue, professional
+}
+        spacing: 15
         ColumnLayout{
 
-            spacing: 10
-
+            spacing: 65
+            
             Image {
 
                 id: iTopLeft
@@ -46,6 +56,7 @@ ApplicationWindow {
                 Layout.preferredWidth: 320
                 Layout.preferredHeight: 240
             }
+        
             Image {
                 id: iBottomLeft
                 source: "bg1.png"
