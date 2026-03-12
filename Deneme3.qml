@@ -4,10 +4,40 @@ import QtQuick.Dialogs
 import QtQuick.Controls
 import QtQuick3D
 import QtQuick.Effects
+import Qt5Compat.GraphicalEffects
+
+    Rectangle {
+
+        id: rectangle
+       
+        width: 250
+        height: 720
+        color: "#15232d"
+        radius: 15
+        border.color: "#2b2222"
+        border.width: 14
+        bottomLeftRadius: 59
+        scale: 1
+        topLeftRadius: 31
+         FastBlur {
+        id: blurLayer
+        anchors.fill: parent
+        source: rectangle
+        radius: 12
+    }
 
     ColumnLayout{
-        id: columnLayout
-        spacing:25
+        id: ddeneme3
+            anchors.fill: parent
+            anchors.leftMargin: 25
+            anchors.rightMargin: 15
+            anchors.centerIn:parent
+            anchors.topMargin: 5
+            anchors.bottomMargin: 5
+            spacing: 1
+            layer.mipmap: false
+
+
         FileDialog{
             id: fileDialog
             visible: false
@@ -25,7 +55,6 @@ import QtQuick.Effects
             id: fileDialogButton
                 text: "Choose Path"
 
-                Layout.fillWidth: true
                 height: 44
                 hoverEnabled: true
 
@@ -116,9 +145,9 @@ import QtQuick.Effects
             width: 200
             height: 40
             flat: true
-
+            text:"start video"
             contentItem: Text{
-                text: "start"
+                text: startButton.text
                 color: startButton.hovered || startButton.pressed ? "#ffffff" : "#cfd8e3"
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
@@ -155,12 +184,12 @@ import QtQuick.Effects
             onClicked: {
                 if(timer.running==false){
                     backend.startVideo();
-                    startText.text = "stop video"
+                    startButton.text = "stop video"
                     timer.start();
                     timer.running=true
                 } else{
                     backend.startVideo();
-                    startText.text = "start video"
+                    startButton.text = "start video"
                     timer.stop();
                     timer.running=false
                 }
@@ -260,6 +289,6 @@ import QtQuick.Effects
         }
 
     }
-
+    }
 
 

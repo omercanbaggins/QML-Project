@@ -48,6 +48,7 @@ class backendSide(QObject):
     def setIndex(self,increment):
         self.provider.setIndex(increment)
 
+    
   
 
 backendObj = backendSide("main.qml")

@@ -71,7 +71,7 @@ class OpenCVImageProvider(QQuickImageProvider):
 
         else:
             return QImage()
-       
+    
         
          
         
