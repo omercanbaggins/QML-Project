@@ -9,6 +9,7 @@ class image:
         self.blurInt=5
         self.threshMax=127
         self.canny = None
+        self.circleImage = None
     def setPath(self,path):
         self.videopPath = path
         self.cap = cv2.VideoCapture(path)
@@ -34,7 +35,9 @@ class image:
                 center = (int(i[0]),int(i[1]))
                 radius = int(i[2])
                 cv2.circle(blank2,center,radius,(255,255,255),3)
-            cv2.imshow("circles",blank2)
+        self.images.append(blank2)
+        self.circleImage = blank2
+
 
   
 
@@ -46,7 +49,9 @@ class image:
            for line in lines:
                x1,x2,y1,y2 = np.reshape(line[0],4)
                cv2.line(blank,(x1,y1),(x2,y2),(255,255,255),4)
-        cv2.imshow(",,",blank)
+
+        self.images.append(blank)
+
         
     def getRoi(self,img,pt):
         pts = np.array(pt)
@@ -76,7 +81,6 @@ class image:
             self.images.append(grayScale)
             self.images.append(thresh)
             self.images.append(cannyImage)
-            self.lineDetect()
             self.circleDetect()
             return self.cvImage
         else:

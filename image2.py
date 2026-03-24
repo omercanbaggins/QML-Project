@@ -51,23 +51,17 @@ class OpenCVImageProvider(QQuickImageProvider):
 
     textIndex = Property(int,fset=setIndex,notify=onIndexChanged)
     def requestImage(self, id, size, requestedSize):
-        if "live" in id:
+        if "normal" in id:
             if self.image is None:
                 return QImage()
             else:
                 return self.convertedImages[(self.imageIndex%5)]
         # Handle the four corner images
-        elif "TR" in id and self.convertedImages[0] is not None:
-            return self.convertedImages[(self.imageIndex+1)%5]  # Top-Right
+        elif "binary" in id:
+            return self.ConvertCVImageToQML(self.imObj.canny) # Top-Right
 
-        elif "BR" in id and self.convertedImages[1] is not None:
-            return self.convertedImages[(self.imageIndex+2)%5]  # Bottom-Right
-
-        elif "TL" in id and self.convertedImages[2] is not None:
-            return self.convertedImages[(self.imageIndex+3)%5]  # Top-Left
-
-        elif "BL" in id and self.convertedImages[4] is not None:
-            return self.convertedImages[(self.imageIndex+4)%5]  # Bottom-Left
+        elif "circles" in id:
+            return self.ConvertCVImageToQML(self.imObj.circleImage)
 
         else:
             return QImage()
